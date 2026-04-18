@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>EtherGifts | 企业礼品定制专家 · 黑色高级版</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0c;
+            color: #ededee;
+            line-height: 1.5;
+        }
+
+        /* 深色主题变量 */
+        :root {
+            --primary: #f37021;
+            --primary-dark: #d95c0e;
+            --primary-glow: rgba(243, 112, 33, 0.2);
+            --bg-surface: #111215;
+            --bg-card: #17181c;
+            --border-subtle: #2a2c31;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b3b8;
+            --shadow-heavy: 0 20px 35px -12px rgba(0, 0, 0, 0.5);
+            --glass-bg: rgba(20, 22, 27, 0.75);
+            --radius-xl: 28px;
+            --radius-lg: 20px;
+            --radius-md: 16px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: inherit;
+            border: none;
+            background: none;
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========= 导航栏 ========= */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            background: rgba(10, 10, 12, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .logo h1 {
+            font-size: 1.7rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff, #f37021);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .logo span {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--primary);
+            background: rgba(243,112,33,0.15);
+            padding: 2px 8px;
+            border-radius: 30px;
+            margin-left: 6px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        .quote-icon {
+            background: rgba(243,112,33,0.12);
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(243,112,33,0.3);
+            transition: 0.2s;
+        }
+        .quote-icon:hover {
+            background: rgba(243,112,33,0.25);
+        }
+        /* 移动端菜单按钮 */
+        .mobile-menu-btn {
+            display: none;
+            font-size: 28px;
+            background: none;
+            color: white;
+            cursor: pointer;
+        }
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            background: #0f0f13;
+            border-top: 1px solid var(--border-subtle);
+            padding: 20px 24px;
+            gap: 18px;
+        }
+        .mobile-nav a {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        .mobile-nav .quote-icon-mobile {
+            justify-content: center;
+            background: rgba(243,112,33,0.15);
+            padding: 10px;
+            border-radius: 40px;
+            text-align: center;
+        }
+
+        /* ========= Hero 黑色高级版 ========= */
+        .hero {
+            position: relative;
+            background: #050507;
+            overflow: hidden;
+            padding: 60px 0 70px;
+        }
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.pexels.com/photos/3945672/pexels-photo-3945672.jpeg?auto=compress&cs=tinysrgb&w=1600');
+            background-size: cover;
+            background-position: center 30%;
+            opacity: 0.2;
+            filter: brightness(0.6) contrast(1.1);
+            pointer-events: none;
+        }
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-grid {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+        .hero-content {
+            flex: 1.2;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border-radius: var(--radius-xl);
+            padding: 32px 32px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 25px 40px -20px black;
+        }
+        .hero-visual {
+            flex: 1;
+            background: rgba(0,0,0,0.45);
+            backdrop-filter: blur(8px);
+            border-radius: var(--radius-xl);
+            padding: 24px 20px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .free-shipping {
+            background: rgba(243,112,33,0.2);
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: var(--primary);
+            border: 1px solid rgba(243,112,33,0.4);
+        }
+        .hero h2 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            margin-bottom: 18px;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #FFF, #e0e0e0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero p {
+            font-size: 1.05rem;
+            color: #cdcfd4;
+            max-width: 500px;
+            margin-bottom: 32px;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #0a0a0c;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 700;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 6px 14px rgba(243,112,33,0.3);
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px rgba(243,112,33,0.4);
+        }
+        /* 礼品卡片展示 */
+        .gift-showcase {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+        .gift-card {
+            background: rgba(20, 22, 27, 0.8);
+            backdrop-filter: blur(4px);
+            border-radius: 24px;
+            padding: 16px 8px;
+            text-align: center;
+            transition: all 0.2s;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .gift-emoji {
+            font-size: 2.8rem;
+        }
+        .gift-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-top: 6px;
+        }
+        .gift-badge {
+            background: rgba(243,112,33,0.2);
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 40px;
+            font-size: 0.65rem;
+            font-weight: 500;
+            margin-top: 8px;
+            color: var(--primary);
+        }
+        .featured-tag {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 22px;
+            flex-wrap: wrap;
+        }
+        .tag {
+            background: rgba(255,255,255,0.05);
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #ccc;
+            border: 1px solid #2a2c31;
+        }
+
+        /* ========= 品类区域 ========= */
+        .categories {
+            padding: 56px 0 40px;
+        }
+        .section-title {
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin-bottom: 28px;
+            letter-spacing: -0.01em;
+            color: white;
+        }
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 16px;
+        }
+        .cat-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 16px 8px;
+            text-align: center;
+            transition: all 0.2s;
+            border: 1px solid var(--border-subtle);
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        .cat-card:hover {
+            border-color: var(--primary);
+            color: white;
+            background: #1e1f25;
+        }
+
+        /* ========= 产品网格 ========= */
+        .products-section {
+            padding: 20px 0 70px;
+            background: #0a0a0c;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 28px;
+            margin-top: 28px;
+        }
+        .product-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: 0.25s ease;
+            border: 1px solid var(--border-subtle);
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.6);
+        }
+        .product-img {
+            background: #1b1d23;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.4rem;
+        }
+        .product-info {
+            padding: 18px 20px 22px;
+        }
+        .product-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+        }
+        .product-price {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 8px 0 4px;
+        }
+        .moq {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+        .add-to-quote {
+            width: 100%;
+            background: var(--primary);
+            color: #0a0a0c;
+            border: none;
+            padding: 12px 0;
+            border-radius: 60px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+        .add-to-quote:hover {
+            background: var(--primary-dark);
+            transform: scale(0.98);
+        }
+
+        /* 询价侧边栏 */
+        .quote-drawer {
+            position: fixed;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 400px;
+            background: #111216;
+            box-shadow: -8px 0 32px rgba(0,0,0,0.6);
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid #2c2e34;
+        }
+        .quote-drawer.open {
+            transform: translateX(0);
+        }
+        .drawer-header {
+            padding: 22px;
+            border-bottom: 1px solid #2a2c31;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+            background: #0c0d10;
+        }
+        .drawer-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .quote-item {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 22px;
+            border-bottom: 1px solid #26282e;
+            padding-bottom: 18px;
+        }
+        .quote-item-img {
+            width: 65px;
+            height: 65px;
+            background: #1f2127;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        .quote-item-details {
+            flex: 1;
+        }
+        .quote-item-title {
+            font-weight: 600;
+        }
+        .quote-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        .quote-item-qty button {
+            background: #2a2c32;
+            width: 28px;
+            height: 28px;
+            border-radius: 30px;
+            font-weight: bold;
+            color: white;
+        }
+        .remove-item {
+            color: #ff8866;
+            font-size: 0.7rem;
+            background: none;
+        }
+        .drawer-footer {
+            padding: 20px;
+            border-top: 1px solid #2a2c31;
+            background: #0c0d10;
+        }
+        .submit-form input, .submit-form textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 20px;
+            background: #1e1f25;
+            border: 1px solid #33363f;
+            color: white;
+            margin-bottom: 14px;
+        }
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 999;
+            display: none;
+            backdrop-filter: blur(4px);
+        }
+        .overlay.active {
+            display: block;
+        }
+        .floating-wa {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #25D366;
+            border-radius: 60px;
+            padding: 12px 22px;
+            color: #0a0a0c;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+            z-index: 90;
+            border: none;
+        }
+
+        footer {
+            background: #08080b;
+            border-top: 1px solid #1e1f25;
+            padding: 48px 0 28px;
+            text-align: center;
+            color: #8e8e96;
+        }
+
+        /* 响应式 + 移动端优化 */
+        @media (max-width: 800px) {
+            .container {
+                padding: 0 18px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .hero h2 {
+                font-size: 1.9rem;
+            }
+            .hero-grid {
+                flex-direction: column;
+            }
+            .product-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+            .quote-drawer {
+                width: 100%;
+            }
+            .hero-content, .hero-visual {
+                width: 100%;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .gift-showcase {
+                gap: 12px;
+            }
+        }
+        @media (max-width: 550px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h2 {
+                font-size: 1.7rem;
+            }
+        }
+        .badge-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .badge-dark {
+            background: rgba(243,112,33,0.12);
+            color: var(--primary);
+            border-radius: 60px;
+            padding: 6px 16px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <h1>EtherGifts<span>corporate</span></h1>
+        </div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#" id="catalogueLink">Gift Catalogue</a>
+            <a href="#">Printing Methods</a>
+            <a href="#">Case Studies</a>
+            <a href="#">About</a>
+            <button class="quote-icon" id="openDrawerBtn">📋 Quote List (<span id="quoteCount">0</span>)</button>
+        </div>
+        <button class="mobile-menu-btn" id="mobileMenuToggle">☰</button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#">Home</a>
+        <a href="#" id="mobileCatalogueLink">Gift Catalogue</a>
+        <a href="#">Printing Methods</a>
+        <a href="#">Case Studies</a>
+        <a href="#">About</a>
+        <button class="quote-icon-mobile" id="mobileOpenDrawer">📋 Quote List (<span id="mobileQuoteCount">0</span>)</button>
+    </div>
+</div>
+
+<!-- Hero 黑色高级背景 + 企业礼品图 -->
+<div class="hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-grid">
+        <div class="hero-content">
+            <div class="free-shipping">🚚 Enjoy free shipping on corporate gift orders</div>
+            <h2>Elevate your brand with <br>custom corporate gifts</h2>
+            <p>Over 10 years expertise · 1000+ practical gifts · One-on-one service</p>
+            <button class="btn-primary" id="exploreBtn">✨ Discover custom gift ideas →</button>
+        </div>
+        <div class="hero-visual">
+            <div class="gift-showcase">
+                <div class="gift-card"><div class="gift-emoji">🛍️</div><div class="gift-label">Eco Tote Bag</div><div class="gift-badge">Custom Logo</div></div>
+                <div class="gift-card"><div class="gift-emoji">💧</div><div class="gift-label">Insulated Bottle</div><div class="gift-badge">Laser Engraving</div></div>
+                <div class="gift-card"><div class="gift-emoji">✒️</div><div class="gift-label">Pen & Notebook Set</div><div class="gift-badge">Embossed Logo</div></div>
+                <div class="gift-card"><div class="gift-emoji">🔋</div><div class="gift-label">Power Bank</div><div class="gift-badge">Tech Essential</div></div>
+            </div>
+            <div class="featured-tag"><span class="tag">🎯 100% customizable</span><span class="tag">🏆 Premium Quality</span><span class="tag">🚀 Bulk discounts</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="container categories">
+    <div class="section-title">Shop by Category</div>
+    <div class="cat-grid">
+        <div class="cat-card">🛍️ Reusable Bags</div><div class="cat-card">💧 Reusable Bottles</div><div class="cat-card">🥤 Drinkware</div>
+        <div class="cat-card">🍴 Reusable Cutlery</div><div class="cat-card">✒️ Stationery</div><div class="cat-card">📱 Tech Accessories</div>
+        <div class="cat-card">⚡ Electronics</div><div class="cat-card">🏠 Home & Living</div><div class="cat-card">🌲 Outdoor & Travel</div><div class="cat-card">🎒 Backpacks</div>
+    </div>
+</div>
+
+<div class="products-section" id="productCatalog">
+    <div class="container">
+        <div class="section-title">✨ All Products <span style="font-size:1rem;">(1083+ customizable gifts)</span></div>
+        <div class="product-grid" id="productGrid"></div>
+    </div>
+</div>
+
+<div class="container" style="padding: 20px 0 60px;">
+    <div class="section-title">Trusted by global brands</div>
+    <div class="badge-group">
+        <span class="badge-dark">🏆 10+ Years</span><span class="badge-dark">🌍 Worldwide Delivery</span>
+        <span class="badge-dark">💼 2000+ Corporate Clients</span><span class="badge-dark">🎨 Custom Logo Experts</span>
+    </div>
+</div>
+
+<footer>
+    <div class="container">© 2025 EtherGifts — Tailored corporate gifting solutions. One-On-One Online Service For Gift<br>📧 hello@ethergifts.com.my  |  📞 +60 12-345 6789</div>
+</footer>
+
+<button class="floating-wa" id="whatsappBtn">💬 One-On-One Service · WhatsApp</button>
+
+<div class="overlay" id="overlay"></div>
+<div class="quote-drawer" id="quoteDrawer">
+    <div class="drawer-header"><span>📋 Your Quote List</span><button id="closeDrawerBtn" style="background:none; font-size:28px; color:white;">&times;</button></div>
+    <div class="drawer-items" id="quoteItemsContainer"><div style="text-align:center; padding: 32px; color:gray;">✨ 暂无产品，点击「Add to Quote」加入</div></div>
+    <div class="drawer-footer">
+        <div class="submit-form">
+            <input type="text" id="companyName" placeholder="Company name *">
+            <input type="email" id="email" placeholder="Work email *">
+            <input type="text" id="budget" placeholder="Estimated budget (MYR)">
+            <textarea rows="2" id="notes" placeholder="Tell us your custom logo & quantity..."></textarea>
+            <button class="btn-primary" id="submitQuoteRequest" style="width:100%; justify-content:center;">📩 Submit Quote Request</button>
+            <p style="font-size:0.7rem; margin-top: 10px; color:#aaa;">Our team will reply within 24h with full quotation.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const products = [
+        { id: 1, name: "Custom Logo Eco Tote Bag", price: 12.54, moq: 50, img: "🛍️" },
+        { id: 2, name: "Stainless Steel Bottle", price: 19.90, moq: 30, img: "💧" },
+        { id: 3, name: "Bamboo Cutlery Set (6pcs)", price: 13.49, moq: 100, img: "🍴" },
+        { id: 4, name: "Wireless Power Bank 10000mAh", price: 45.00, moq: 20, img: "🔋" },
+        { id: 5, name: "Leather Notebook & Pen Set", price: 22.80, moq: 50, img: "📓" },
+        { id: 6, name: "Ceramic Mug with Lid", price: 15.30, moq: 40, img: "☕" },
+        { id: 7, name: "Umbrella with Logo", price: 18.20, moq: 60, img: "🌂" },
+        { id: 8, name: "Desk Organizer Set", price: 28.50, moq: 30, img: "🗄️" }
+    ];
+    let quoteList = [];
+
+    function saveQuote() { localStorage.setItem('ethergifts_quote', JSON.stringify(quoteList)); updateQuoteUI(); }
+    function loadQuote() { const stored = localStorage.getItem('ethergifts_quote'); quoteList = stored ? JSON.parse(stored) : []; updateQuoteUI(); }
+    function updateQuoteUI() {
+        const container = document.getElementById('quoteItemsContainer');
+        const countSpan = document.getElementById('quoteCount');
+        const mobileCountSpan = document.getElementById('mobileQuoteCount');
+        const totalCount = quoteList.reduce((s,i)=> s + i.quantity, 0);
+        if(countSpan) countSpan.innerText = totalCount;
+        if(mobileCountSpan) mobileCountSpan.innerText = totalCount;
+        if(!quoteList.length) { container.innerHTML = '<div style="text-align:center; padding: 32px; color:gray;">✨ 暂无产品，点击「Add to Quote」加入</div>'; return; }
+        container.innerHTML = '';
+        quoteList.forEach((item, idx) => {
+            const div = document.createElement('div'); div.className = 'quote-item';
+            div.innerHTML = `<div class="quote-item-img">${item.img || '🎁'}</div>
+                <div class="quote-item-details"><div class="quote-item-title">${item.name}</div><div>RM ${item.price} / pc</div>
+                <div class="quote-item-qty"><button data-idx="${idx}" data-delta="-1">-</button><span>${item.quantity}</span>
+                <button data-idx="${idx}" data-delta="1">+</button><button class="remove-item" data-idx="${idx}">🗑️ 移除</button></div>
+                <div style="font-size:0.7rem; color:#aaa;">MOQ: ${item.moq}+</div></div>`;
+            container.appendChild(div);
+        });
+        document.querySelectorAll('.quote-item-qty button[data-delta]').forEach(btn => {
+            btn.addEventListener('click', (e) => { const idx = parseInt(btn.dataset.idx), delta = parseInt(btn.dataset.delta); if(!isNaN(idx) && quoteList[idx]) { let nq = quoteList[idx].quantity + delta; if(nq<1) nq=1; quoteList[idx].quantity=nq; saveQuote(); } e.stopPropagation(); });
+        });
+        document.querySelectorAll('.remove-item').forEach(btn => { btn.addEventListener('click', (e) => { const idx = parseInt(btn.dataset.idx); if(!isNaN(idx)) { quoteList.splice(idx,1); saveQuote(); } e.stopPropagation(); }); });
+    }
+    function addToQuote(product, qty=1) {
+        const existing = quoteList.find(i=> i.id === product.id);
+        if(existing) existing.quantity += qty;
+        else quoteList.push({ id:product.id, name:product.name, price:product.price, moq:product.moq, img:product.img, quantity:qty });
+        saveQuote();
+        const toast = document.createElement('div'); toast.innerText = `✓ 已添加 ${product.name} 至询价清单`; toast.style.cssText = 'position:fixed; bottom:80px; left:20px; background:#1e1f25; color:white; padding:8px 18px; border-radius:40px; font-size:0.8rem; z-index:1001; backdrop-filter:blur(8px);'; document.body.appendChild(toast); setTimeout(()=>toast.remove(),2000);
+    }
+    function renderProducts() {
+        const grid = document.getElementById('productGrid'); if(!grid) return;
+        grid.innerHTML = '';
+        products.forEach(p => {
+            const card = document.createElement('div'); card.className = 'product-card';
+            card.innerHTML = `<div class="product-img" style="font-size:3rem;">${p.img}</div><div class="product-info"><div class="product-title">${p.name}</div><div class="product-price">RM ${p.price.toFixed(2)} MYR</div><div class="moq">📦 Min. order: ${p.moq} pcs</div><button class="add-to-quote" data-id="${p.id}">➕ Add to Quote</button><div style="margin-top:8px; font-size:0.7rem; text-align:center;">🎨 Custom logo & printing ready</div></div>`;
+            grid.appendChild(card);
+        });
+        document.querySelectorAll('.add-to-quote').forEach(btn => { btn.addEventListener('click', (e) => { const pid = parseInt(btn.dataset.id); const prod = products.find(x=>x.id===pid); if(prod) addToQuote(prod,1); e.stopPropagation(); }); });
+    }
+    function submitQuoteRequest() {
+        const company = document.getElementById('companyName')?.value.trim();
+        const email = document.getElementById('email')?.value.trim();
+        if(!company || !email) { alert('请填写公司名称和邮箱，以便我们发送报价单。'); return; }
+        if(quoteList.length===0) { alert('请至少添加一款产品到询价清单。'); return; }
+        alert(`✅ 询价已提交！我们的礼品顾问将于24小时内通过 ${email} 发送详细报价单。\n感谢您选择 EtherGifts！`);
+        closeDrawer();
+    }
+    const drawer = document.getElementById('quoteDrawer'), overlay = document.getElementById('overlay');
+    function openDrawer() { drawer.classList.add('open'); overlay.classList.add('active'); }
+    function closeDrawer() { drawer.classList.remove('open'); overlay.classList.remove('active'); }
+    document.getElementById('openDrawerBtn')?.addEventListener('click', openDrawer);
+    document.getElementById('mobileOpenDrawer')?.addEventListener('click', openDrawer);
+    document.getElementById('closeDrawerBtn')?.addEventListener('click', closeDrawer);
+    overlay?.addEventListener('click', closeDrawer);
+    document.getElementById('submitQuoteRequest')?.addEventListener('click', submitQuoteRequest);
+    document.getElementById('exploreBtn')?.addEventListener('click', ()=> document.getElementById('productCatalog')?.scrollIntoView({ behavior: 'smooth' }));
+    document.getElementById('whatsappBtn')?.addEventListener('click', ()=> window.open('https://wa.me/60123456789?text=Hi%20EtherGifts%2C%20I%20need%20corporate%20gift%20quote', '_blank'));
+    document.getElementById('catalogueLink')?.addEventListener('click', (e)=>{ e.preventDefault(); document.getElementById('productCatalog')?.scrollIntoView({ behavior: 'smooth' }); });
+    document.getElementById('mobileCatalogueLink')?.addEventListener('click', (e)=>{ e.preventDefault(); document.getElementById('mobileNav').style.display='none'; document.getElementById('productCatalog')?.scrollIntoView({ behavior: 'smooth' }); });
+    const mobileToggle = document.getElementById('mobileMenuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    mobileToggle?.addEventListener('click', ()=>{ if(mobileNav.style.display === 'flex') mobileNav.style.display = 'none'; else mobileNav.style.display = 'flex'; });
+    renderProducts();
+    loadQuote();
+</script>
+</body>
+</html>
